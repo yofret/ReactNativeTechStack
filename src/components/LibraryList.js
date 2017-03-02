@@ -3,17 +3,14 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
+	import { connect } from 
 	import { View } from 'react-native';
-	import { Provider } from 'react-redux';
-	import { createStore } from 'redux';
-	import reducers from './reducers';
-	import { Header } from './components/common';
 
 //-------------------------------
 // Name Component
 //-------------------------------
 
-	class App extends Component {
+	class LibraryList extends Component {
 		//State
 		state = {}
 
@@ -31,11 +28,7 @@
 		// Render methods
 		render() {
 			return (
-				<Provider store={createStore(reducers)}>
-					<View style={{ flex: 1}}>
-						<Header headerText='Tech Stack' />
-					</View>
-				</Provider>
+				<View></View>
 			);
 		}					
 	}
@@ -44,4 +37,4 @@
 // Export Component
 //-------------------------------
 
-	export default App;
+	export default LibraryList;
