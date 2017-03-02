@@ -3,7 +3,7 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
-	import { connect } from 
+	import { connect } from 'react-redux';
 	import { View } from 'react-native';
 
 //-------------------------------
@@ -37,4 +37,4 @@
 // Export Component
 //-------------------------------
 
-	export default LibraryList;
+	export default connect()(LibraryList);
