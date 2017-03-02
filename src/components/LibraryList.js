@@ -4,10 +4,11 @@
 
 	import React, { Component } from 'react';
 	import { connect } from 'react-redux';
-	import { View } from 'react-native';
+	import { View, ListView } from 'react-native';
+	import  ListItem from './ListItem';
 
 //-------------------------------
-// Name Component
+// LibraryList Component
 //-------------------------------
 
 	class LibraryList extends Component {
@@ -15,7 +16,13 @@
 		state = {}
 
 		//Life cycle methods
-		componentWillMount() {}
+		componentWillMount() {
+			const ds =  new ListView.DataSource({
+				rowHasChanged: (r1, r2) => r1 !== r2
+			})
+
+			this.dataSource = ds.cloneWithRows(this.props.libraries);
+		}
 
 		componentDidMount() {}
 
@@ -23,18 +30,34 @@
 
 		componentWillUpdate(nextProps, nextState) {}
 
-		componentDidUpdate(prevProps, prevState) {}		
+		componentDidUpdate(prevProps, prevState) {}
+
+		// Methods
+		renderRow(library) {
+			return <ListItem library={library} />;
+		}		
 
 		// Render methods
 		render() {
 			return (
-				<View></View>
+				<ListView
+					dataSource={this.dataSource}
+					renderRow={this.renderRow}
+				/>
 			);
 		}					
 	}
 
 //-------------------------------
+// Map Redux State to component props
+//-------------------------------
+
+	const mapStateToProps = state => {
+		return { libraries: state.libraries };
+	};
+
+//-------------------------------
 // Export Component
 //-------------------------------
 
-	export default connect()(LibraryList);
+	export default connect(mapStateToProps)(LibraryList);

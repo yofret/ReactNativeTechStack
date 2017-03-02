@@ -3,18 +3,14 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
-	import { View } from 'react-native';
-	import { Provider } from 'react-redux';
-	import { createStore } from 'redux';
-	import reducers from './reducers';
-	import { Header } from './components/common';
-	import LibraryList from './components/LibraryList'
+	import { Text } from 'react-native';
+	import { CardSection } from './common';
 
 //-------------------------------
 // Name Component
 //-------------------------------
 
-	class App extends Component {
+	class ListItem extends Component {
 		//State
 		state = {}
 
@@ -31,19 +27,25 @@
 
 		// Render methods
 		render() {
+			const { titleStyle } = styles;
+
 			return (
-				<Provider store={createStore(reducers)}>
-					<View style={{ flex: 1}}>
-						<Header headerText='Tech Stack' />
-						<LibraryList />
-					</View>
-				</Provider>
+				<CardSection>
+					<Text style={titleStyle}>{this.props.library.title}</Text>
+				</CardSection>
 			);
 		}					
+	}
+
+	const styles = {
+		titleStyle: {
+			fontSize: 18,
+			paddingLeft: 15
+		}
 	}
 
 //-------------------------------
 // Export Component
 //-------------------------------
 
-	export default App;
+	export default ListItem;
