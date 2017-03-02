@@ -25,7 +25,17 @@
 
 		componentWillUpdate(nextProps, nextState) {}
 
-		componentDidUpdate(prevProps, prevState) {}		
+		componentDidUpdate(prevProps, prevState) {}	
+
+		// methods
+		renderDescription() {
+			const { library, selectedLibraryId, description } = this.props
+			if(library.id === selectedLibraryId) {
+				return (
+					<Text>{library.description}</Text>
+				)
+			}
+		}	
 
 		// Render methods
 		render() {
@@ -40,6 +50,7 @@
 								{title}
 							</Text>
 						</CardSection>
+						{this.renderDescription()}
 					</View>
 				</TouchableWithoutFeedback>
 			);
@@ -54,7 +65,15 @@
 	}
 
 //-------------------------------
+// Map Redux State to component props
+//-------------------------------
+
+	const mapStateToProps = state => {
+		return { selectedLibraryId: state.selectedLibraryId };
+	};
+
+//-------------------------------
 // Export Component
 //-------------------------------
 
-	export default connect(null, actions)(ListItem); // if we pass the action to the connect function it will call dispatch for us
+	export default connect(mapStateToProps, actions)(ListItem); // if we pass the action to the connect function it will call dispatch for us
