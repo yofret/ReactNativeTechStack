@@ -29,13 +29,13 @@
 
 		// methods
 		renderDescription() {
-			const { library, selectedLibraryId, description } = this.props
-			if(library.id === selectedLibraryId) {
+			const { library, expanded } = this.props
+			if(expanded) {
 				return (
 					<Text>{library.description}</Text>
 				)
 			}
-		}	
+		}
 
 		// Render methods
 		render() {
@@ -68,8 +68,10 @@
 // Map Redux State to component props
 //-------------------------------
 
-	const mapStateToProps = state => {
-		return { selectedLibraryId: state.selectedLibraryId };
+	const mapStateToProps = (state, ownProps) => {
+		// some kind of precalculation of our props!
+		const expanded = state.selectedLibraryId == ownProps.library.id
+		return { expanded };
 	};
 
 //-------------------------------
