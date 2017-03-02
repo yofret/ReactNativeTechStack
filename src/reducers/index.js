@@ -2,12 +2,13 @@
 // Redux Dependencies 
 //-------------------------------
 
-	import { combinedReducers } from 'redux';
+	import { combineReducers } from 'redux';
+	import LibraryReducer from './LibraryReducer';
 
 //-------------------------------
 // Export Reducers 
 //-------------------------------
 	
-	export default combinedReducers({
-		libraries: () => []
+	export default combineReducers({
+		libraries: LibraryReducer
 	});
