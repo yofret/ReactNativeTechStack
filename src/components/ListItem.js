@@ -3,7 +3,12 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
-	import { View, Text, TouchableWithoutFeedback } from 'react-native';
+	import { 
+		View, 
+		Text, 
+		TouchableWithoutFeedback,
+		LayoutAnimation
+	} from 'react-native';
 	import { connect } from 'react-redux';
 	import { CardSection } from './common';
 	import * as actions from '../actions';
@@ -23,7 +28,9 @@
 
 		componentWillReceiveProps(nextProps) {}
 
-		componentWillUpdate(nextProps, nextState) {}
+		componentWillUpdate(nextProps, nextState) {
+			LayoutAnimation.spring();
+		}
 
 		componentDidUpdate(prevProps, prevState) {}	
 
@@ -32,7 +39,11 @@
 			const { library, expanded } = this.props
 			if(expanded) {
 				return (
-					<Text>{library.description}</Text>
+					<CardSection>
+						<Text style={{flex:1}}>
+							{library.description}
+						</Text>
+					</CardSection>
 				)
 			}
 		}
