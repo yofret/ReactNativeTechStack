@@ -7,7 +7,9 @@
 		View, 
 		Text, 
 		TouchableWithoutFeedback,
-		LayoutAnimation
+		LayoutAnimation,
+		UIManager,
+		Platform
 	} from 'react-native';
 	import { connect } from 'react-redux';
 	import { CardSection } from './common';
@@ -18,8 +20,13 @@
 //-------------------------------
 
 	class ListItem extends Component {
-		//State
-		state = {}
+		constructor() {
+			super();
+
+			if (Platform.OS === 'android') {
+				UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+			}
+		}
 
 		//Life cycle methods
 		componentWillMount() {}
